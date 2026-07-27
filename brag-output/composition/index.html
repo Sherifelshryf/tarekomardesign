@@ -1,0 +1,832 @@
+<!doctype html>
+<html lang="en" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>TOD Studio — Brag</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      /*
+       * Fonts are declared inline, not via a linked stylesheet: the render
+       * static-guard only scans inline @font-face rules, and a linked sheet
+       * makes it fall back to a generic face (and fetch it over the network)
+       * while preview still looks correct. Files are local woff2.
+       */
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Cormorant Garamond';
+        font-style: normal;
+        font-weight: 300;
+        font-display: swap;
+        src: url(assets/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYpHtKgS4.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+      /* cyrillic */
+      @font-face {
+        font-family: 'Cormorant Garamond';
+        font-style: normal;
+        font-weight: 300;
+        font-display: swap;
+        src: url(assets/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYrXtKgS4.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+      /* vietnamese */
+      @font-face {
+        font-family: 'Cormorant Garamond';
+        font-style: normal;
+        font-weight: 300;
+        font-display: swap;
+        src: url(assets/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYpntKgS4.woff2) format('woff2');
+        unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+      }
+      /* latin-ext */
+      @font-face {
+        font-family: 'Cormorant Garamond';
+        font-style: normal;
+        font-weight: 300;
+        font-display: swap;
+        src: url(assets/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYp3tKgS4.woff2) format('woff2');
+        unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+      /* latin */
+      @font-face {
+        font-family: 'Cormorant Garamond';
+        font-style: normal;
+        font-weight: 300;
+        font-display: swap;
+        src: url(assets/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYqXtK.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Cormorant Garamond';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(assets/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYpHtKgS4.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+      /* cyrillic */
+      @font-face {
+        font-family: 'Cormorant Garamond';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(assets/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYrXtKgS4.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+      /* vietnamese */
+      @font-face {
+        font-family: 'Cormorant Garamond';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(assets/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYpntKgS4.woff2) format('woff2');
+        unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+      }
+      /* latin-ext */
+      @font-face {
+        font-family: 'Cormorant Garamond';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(assets/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYp3tKgS4.woff2) format('woff2');
+        unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+      /* latin */
+      @font-face {
+        font-family: 'Cormorant Garamond';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(assets/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYqXtK.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7SUc.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+      /* cyrillic */
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7SUc.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+      /* greek-ext */
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7SUc.woff2) format('woff2');
+        unicode-range: U+1F00-1FFF;
+      }
+      /* greek */
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7SUc.woff2) format('woff2');
+        unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+      }
+      /* vietnamese */
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7SUc.woff2) format('woff2');
+        unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+      }
+      /* latin-ext */
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7SUc.woff2) format('woff2');
+        unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+      /* latin */
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7SUc.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+      /* cyrillic */
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7SUc.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+      /* greek-ext */
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7SUc.woff2) format('woff2');
+        unicode-range: U+1F00-1FFF;
+      }
+      /* greek */
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7SUc.woff2) format('woff2');
+        unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+      }
+      /* vietnamese */
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7SUc.woff2) format('woff2');
+        unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+      }
+      /* latin-ext */
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7SUc.woff2) format('woff2');
+        unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+      /* latin */
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 600;
+        font-display: swap;
+        src: url(assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7SUc.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+      /* cyrillic */
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 600;
+        font-display: swap;
+        src: url(assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7SUc.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+      /* greek-ext */
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 600;
+        font-display: swap;
+        src: url(assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7SUc.woff2) format('woff2');
+        unicode-range: U+1F00-1FFF;
+      }
+      /* greek */
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 600;
+        font-display: swap;
+        src: url(assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7SUc.woff2) format('woff2');
+        unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+      }
+      /* vietnamese */
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 600;
+        font-display: swap;
+        src: url(assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7SUc.woff2) format('woff2');
+        unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+      }
+      /* latin-ext */
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 600;
+        font-display: swap;
+        src: url(assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7SUc.woff2) format('woff2');
+        unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+      /* latin */
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 600;
+        font-display: swap;
+        src: url(assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      /*
+       * Palette lifted verbatim from src/app/globals.css @theme.
+       * Paper, stone, ink, and one brass accent. No gradients, no glass, no glow.
+       */
+      :root {
+        --paper: #f7f5f1;
+        --paper-dim: #efece6;
+        --linen: #e5e1d9;
+        --stone: #c9c3b8;
+        --ash: #8f8a80;
+        --graphite: #4a4640;
+        --ink: #221f1c;
+        --obsidian: #131211;
+        --brass: #b98a4b;
+        --brass-soft: #d8b988;
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+
+      html, body {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #131211;
+      }
+
+      body { font-family: "Inter", system-ui, sans-serif; }
+
+      #root { position: relative; width: 1920px; height: 1080px; overflow: hidden; }
+
+      /* The project's workhorse label style: uppercase, 0.16em tracking. */
+      .label {
+        font-family: "Inter", system-ui, sans-serif;
+        font-size: 15px;
+        font-weight: 500;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+      .tabular { font-variant-numeric: tabular-nums; }
+
+      .fill { position: absolute; inset: 0; }
+
+      /* ---------------------------------------------------------- ground */
+
+      #ground { background: var(--paper); }
+
+      /* ----------------------------------------------------------- stage */
+
+      .persp {
+        position: absolute;
+        inset: 0;
+        perspective: 1500px;
+        perspective-origin: 50% 38%;
+      }
+
+      /* Anchor point: the origin sits at the centre of the room floor. */
+      /* Opens as a plan (looking straight down), then tips up into the room. */
+      .room {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 0;
+        height: 0;
+        transform-style: preserve-3d;
+      }
+
+      .face { position: absolute; }
+
+      /* Floor — 1200 x 1000px stands for a 3600 x 3000mm room (1px = 3mm). */
+      #floor {
+        left: -600px;
+        top: -500px;
+        width: 1200px;
+        height: 1000px;
+        transform: rotateX(90deg);
+        background: var(--paper-dim);
+      }
+
+      #floor-outline { position: absolute; inset: 0; border: 2px solid var(--brass); }
+
+      #floor-grid {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        background-image:
+          linear-gradient(to right, rgba(74, 70, 64, 0.16) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(74, 70, 64, 0.16) 1px, transparent 1px);
+        background-size: 100px 100px;
+      }
+
+      /*
+       * Walls. The outer .face carries only the 3D placement — it must stay
+       * transparent, or the wall would paint at full height before the inner
+       * .grow has extruded. All wall surface lives on .grow.
+       */
+      #wall-back { left: -600px; top: -800px; width: 1200px; height: 800px; transform: translateZ(-500px); }
+      #wall-left { left: -500px; top: -800px; width: 1000px; height: 800px; transform: translateX(-600px) rotateY(90deg); }
+      #wall-right { left: -500px; top: -800px; width: 1000px; height: 800px; transform: translateX(600px) rotateY(-90deg); }
+      .grow {
+        width: 100%;
+        height: 100%;
+        transform-origin: 50% 100%;
+        background: var(--linen);
+        border: 1px solid rgba(34, 31, 28, 0.14);
+        opacity: 0;
+      }
+
+      /* Cabinet fronts — 200 x 300px is a 600mm wide, 900mm tall base unit. */
+      .cab { top: -300px; width: 200px; height: 300px; transform: translateZ(-300px); }
+      #cab1 { left: -600px; }
+      #cab2 { left: -400px; }
+      #cab3 { left: -200px; }
+
+      .cab-face {
+        width: 100%;
+        height: 100%;
+        background: var(--stone);
+        border: 1px solid rgba(34, 31, 28, 0.22);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+      }
+      /* The slim edge-pull that is the studio's default handle detail. */
+      .pull { display: block; width: 6px; height: 96px; background: var(--brass); opacity: 0.85; }
+
+      /* Worktop: back flush with the carcasses, overhang at the front. */
+      #wt-top { left: -600px; top: -419.5px; width: 600px; height: 213px; transform: translateZ(-393.5px) rotateX(90deg); }
+      #wt-edge { left: -600px; top: -313px; width: 600px; height: 13px; transform: translateZ(-287px); }
+      .wt-scale { width: 100%; height: 100%; transform-origin: 0% 50%; background: var(--graphite); }
+      #wt-edge .wt-scale { background: var(--ink); }
+
+      /* Brass flash on the wall line at the moment of a flush contact. */
+      .snapline { top: -300px; width: 4px; height: 300px; transform: translateZ(-299px); background: var(--brass); opacity: 0; }
+      #snapline1 { left: -602px; }
+      #snapline2 { left: -402px; }
+
+      /* ------------------------------------------------ plan-view drawing */
+      /* Lives on the floor plane, so it tips away with the room. */
+
+      #plan-draw { position: absolute; left: 0; top: 640px; width: 1200px; height: 120px; }
+
+      #dim-rule { position: absolute; left: 0; top: 60px; width: 1200px; height: 2px; background: var(--brass); transform-origin: 0% 50%; }
+      .dim-cap { position: absolute; top: 40px; width: 2px; height: 42px; background: var(--brass); opacity: 0; }
+      #dim-cap-l { left: 0; }
+      #dim-cap-r { left: 1198px; }
+
+      #dim-figure {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1200px;
+        text-align: center;
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-weight: 300;
+        font-size: 52px;
+        color: var(--ink);
+        opacity: 0;
+      }
+
+      /* ------------------------------------------------- screen overlays */
+
+      #s1-mark { position: absolute; left: 96px; bottom: 88px; color: var(--graphite); opacity: 0; }
+
+      #studio-mark {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 132px;
+        text-align: center;
+        color: var(--paper);
+        font-size: 19px;
+        letter-spacing: 0.34em;
+        opacity: 0;
+      }
+
+      /* ------------------------------------------------------ UI chrome */
+
+      #catalog {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 320px;
+        background: var(--ink);
+        border-right: 1px solid rgba(247, 245, 241, 0.1);
+        padding: 56px 28px;
+        opacity: 0;
+      }
+      #catalog h2 { color: var(--ash); font-size: 12px; margin-bottom: 34px; }
+
+      .row {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 15px 12px;
+        margin-bottom: 8px;
+        border: 1px solid transparent;
+      }
+      .row-thumb { width: 42px; height: 42px; border: 1px solid var(--ash); flex: none; }
+      .row-thumb i { display: block; width: 4px; height: 20px; background: var(--brass); margin: 11px auto; }
+      .row-name { color: var(--paper); font-size: 14px; letter-spacing: 0.05em; }
+      #row1.is-active { border-color: var(--brass); background: rgba(185, 138, 75, 0.14); }
+
+      #cursor { position: absolute; left: 0; top: 0; width: 22px; height: 30px; opacity: 0; }
+
+      #dim600 {
+        position: absolute;
+        left: 527px;
+        top: 878px;
+        width: 200px;
+        text-align: center;
+        color: var(--brass-soft);
+        font-size: 14px;
+        opacity: 0;
+      }
+      #dim600 .r { display: block; height: 1px; background: var(--brass); margin-top: 9px; }
+
+      /* Sits clear of the walkthrough button's zone so the two never collide
+         while one is fading out and the other in. */
+      #wt-caption {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 205px;
+        text-align: center;
+        color: var(--stone);
+        font-size: 16px;
+        opacity: 0;
+      }
+
+      #walk-btn {
+        position: absolute;
+        left: 50%;
+        bottom: 60px;
+        margin-left: -132px;
+        width: 264px;
+        padding: 19px 0;
+        text-align: center;
+        background: var(--brass);
+        color: var(--obsidian);
+        font-size: 14px;
+        opacity: 0;
+      }
+
+      /* --------------------------------------------------------- outro */
+
+      /* The clip stays transparent — HyperFrames owns its visibility. The dim
+         is a veil inside it, so nothing animates the clip element itself. */
+      #outro { display: grid; place-items: center; }
+      #outro-veil { position: absolute; inset: 0; background: rgba(19, 18, 17, 0.94); opacity: 0; }
+      #outro-inner { position: relative; text-align: center; }
+      #outro-mark { color: var(--paper); font-size: 22px; letter-spacing: 0.34em; opacity: 0; }
+      #outro-rule { width: 0; height: 1px; background: var(--brass); margin: 40px auto; }
+      #outro-line {
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-weight: 300;
+        font-size: 46px;
+        color: var(--stone);
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="23.8"
+      data-width="1920"
+      data-height="1080"
+      data-fps="30"
+    >
+      <!-- Ground: paper for the drawing, obsidian once the room stands up. -->
+      <div id="ground" class="clip fill" data-start="0" data-duration="23.8" data-track-index="0"></div>
+
+      <!-- Stage: one continuous room for the whole film. -->
+      <div id="stage" class="clip fill" data-start="0" data-duration="23.8" data-track-index="1">
+        <div class="persp">
+          <!--
+            The room is a 3D volume that deliberately extends past the frame —
+            that is what standing inside a room looks like. Scoped to .room so
+            the screen-space overlays stay fully audited.
+          -->
+          <div class="room" data-layout-allow-overflow>
+            <div id="floor" class="face">
+              <div id="floor-outline"></div>
+              <div id="floor-grid"></div>
+              <div id="plan-draw">
+                <div id="dim-figure" class="tabular">0 mm</div>
+                <div id="dim-rule"></div>
+                <div id="dim-cap-l" class="dim-cap"></div>
+                <div id="dim-cap-r" class="dim-cap"></div>
+              </div>
+            </div>
+
+            <div id="wall-back" class="face wall"><div class="grow"></div></div>
+            <div id="wall-left" class="face wall"><div class="grow"></div></div>
+            <div id="wall-right" class="face wall"><div class="grow"></div></div>
+
+            <div id="wt-top" class="face"><div class="wt-scale"></div></div>
+            <div id="wt-edge" class="face"><div class="wt-scale"></div></div>
+
+            <div id="cab1" class="face cab"><div class="cab-face"><i class="pull"></i></div></div>
+            <div id="cab2" class="face cab"><div class="cab-face"><i class="pull"></i></div></div>
+            <div id="cab3" class="face cab"><div class="cab-face"><i class="pull"></i></div></div>
+
+            <div id="snapline1" class="face snapline"></div>
+            <div id="snapline2" class="face snapline"></div>
+          </div>
+        </div>
+
+        <div id="s1-mark" class="label">Tarek Omar Design</div>
+        <div id="studio-mark" class="label">TOD Studio</div>
+      </div>
+
+      <!-- Studio chrome: catalog, cursor, measurements, the walkthrough control. -->
+      <div id="chrome" class="clip fill" data-start="8.2" data-duration="13.1" data-track-index="2">
+        <div id="catalog">
+          <h2 class="label">Catalog · Kitchen</h2>
+          <div id="row1" class="row"><span class="row-thumb"><i></i></span><span class="row-name">Base Cabinet 600</span></div>
+          <div class="row"><span class="row-thumb"><i></i></span><span class="row-name">Tall Unit 600</span></div>
+          <div class="row"><span class="row-thumb"><i></i></span><span class="row-name">Wall Cabinet 800</span></div>
+        </div>
+
+        <svg id="cursor" viewBox="0 0 22 30" aria-hidden="true">
+          <path d="M1 1 L1 24 L7 18.5 L11 28 L14.5 26.5 L10.6 17.4 L18.5 17 Z"
+                fill="#f7f5f1" stroke="#221f1c" stroke-width="1.4" stroke-linejoin="round" />
+        </svg>
+
+        <div id="dim600" class="label tabular">600 mm<span class="r"></span></div>
+        <div id="wt-caption" class="label">Worktops are derived, never stored</div>
+        <div id="walk-btn" class="label">Walk inside</div>
+      </div>
+
+      <!-- Outro, over the room that was just built. -->
+      <div id="outro" class="clip fill" data-start="21.3" data-duration="2.5" data-track-index="3">
+        <div id="outro-veil"></div>
+        <div id="outro-inner">
+          <div id="outro-mark" class="label">Tarek Omar Design</div>
+          <div id="outro-rule"></div>
+          <div id="outro-line">Design, explore, and experience your space before it exists.</div>
+        </div>
+      </div>
+
+      <!-- Music: silent through the hook, low under the middle, gone by the wordmark. -->
+      <audio id="bgm" src="assets/music/happy-beats-business-moves-vol-11-by-ende-dot-app.mp3"
+             data-start="0" data-duration="23.8" data-track-index="10" data-volume="0"></audio>
+
+      <!-- SFX: sparse, dry, motion-matched. One per track so nothing collides.
+           Slot durations match each file's real length exactly. -->
+      <audio id="sfx-cap-l"  src="assets/sfx/click2.ogg"                data-start="1.30"  data-duration="0.06" data-track-index="11" data-volume="0.35"></audio>
+      <audio id="sfx-cap-r"  src="assets/sfx/click2.ogg"                data-start="2.60"  data-duration="0.06" data-track-index="12" data-volume="0.35"></audio>
+      <audio id="sfx-settle" src="assets/sfx/bong_001.ogg"              data-start="3.62"  data-duration="0.12" data-track-index="13" data-volume="0.22"></audio>
+      <audio id="sfx-rise"   src="assets/sfx/impactSoft_medium_001.ogg" data-start="5.80"  data-duration="0.18" data-track-index="14" data-volume="0.40"></audio>
+      <audio id="sfx-click"  src="assets/sfx/click2.ogg"                data-start="9.80"  data-duration="0.06" data-track-index="15" data-volume="0.30"></audio>
+      <audio id="sfx-snap1"  src="assets/sfx/impactSoft_medium_004.ogg" data-start="10.30" data-duration="0.15" data-track-index="16" data-volume="0.50"></audio>
+      <audio id="sfx-snap2"  src="assets/sfx/impactSoft_medium_002.ogg" data-start="12.65" data-duration="0.14" data-track-index="17" data-volume="0.50"></audio>
+      <audio id="sfx-slab"   src="assets/sfx/impactSoft_medium_003.ogg" data-start="13.60" data-duration="0.14" data-track-index="18" data-volume="0.30"></audio>
+      <audio id="sfx-reflow" src="assets/sfx/impactSoft_heavy_002.ogg"  data-start="17.91" data-duration="0.57" data-track-index="19" data-volume="0.42"></audio>
+      <audio id="sfx-press"  src="assets/sfx/click2.ogg"                data-start="18.90" data-duration="0.06" data-track-index="20" data-volume="0.30"></audio>
+      <audio id="sfx-outro"  src="assets/sfx/bong_001.ogg"              data-start="21.62" data-duration="0.12" data-track-index="21" data-volume="0.18"></audio>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      /*
+       * Initial transforms for the elements that are on screen at frame 0.
+       * These cannot live in CSS — GSAP owns the transform of anything it
+       * tweens and would discard a CSS one — and they cannot be a tl.set() at
+       * position 0, because a zero-duration set does not apply while the
+       * playhead sits exactly on 0. Applied once at load, before any seek.
+       */
+      gsap.set(".room", { rotationX: -90, y: 0 });
+      gsap.set("#dim-rule", { scaleX: 0 });
+      gsap.set(".wt-scale", { scaleX: 0 });
+
+      /*
+       * Every initial state lives in CSS, not in a tl.set() at position 0.
+       * A zero-duration set at 0 does not apply while the playhead sits exactly
+       * on 0, so frame 0 would render the un-hidden state — the walls at full
+       * height, the cabinets already seated. CSS is the only thing guaranteed
+       * to be correct on the very first frame.
+       */
+
+      /* ------------------------------------------ Scene 1 — drawn (0-4.8)
+       * Paper, a brass dimension line, and a figure that settles on 3600 mm.
+       * No music yet: the film opens in near-silence.
+       */
+      tl.to("#floor-grid", { opacity: 0.5, duration: 0.7, ease: "power2.out" }, 0.35);
+
+      tl.to("#dim-cap-l", { opacity: 1, duration: 0.14, ease: "power2.out" }, 1.30)
+        .to("#dim-rule", { scaleX: 1, duration: 1.22, ease: "power3.inOut" }, 1.34)
+        .to("#dim-cap-r", { opacity: 1, duration: 0.14, ease: "power2.out" }, 2.60)
+        .to("#dim-figure", { opacity: 1, duration: 0.3, ease: "power2.out" }, 2.62);
+
+      // Count-up, driven by the timeline so it is identical on every seek.
+      const counter = { v: 0 };
+      tl.to(counter, {
+        v: 3600,
+        duration: 1.0,
+        ease: "power3.out",
+        onUpdate() {
+          document.getElementById("dim-figure").textContent =
+            Math.round(counter.v).toLocaleString("en-US") + " mm";
+        },
+      }, 2.62);
+
+      tl.to("#s1-mark", { opacity: 1, duration: 0.6, ease: "power2.out" }, 3.10);
+
+      /* ------------------------------- Scene 2 — the room stands up (4.8-8.2)
+       * The plan lifts into perspective and the walls extrude from the floor.
+       */
+      tl.to("#dim-figure", { opacity: 0, duration: 0.5, ease: "power2.in" }, 4.85)
+        .to("#dim-rule", { opacity: 0, duration: 0.5, ease: "power2.in" }, 4.85)
+        .to("#dim-cap-l", { opacity: 0, duration: 0.5, ease: "power2.in" }, 4.85)
+        .to("#dim-cap-r", { opacity: 0, duration: 0.5, ease: "power2.in" }, 4.85)
+        .to("#s1-mark", { opacity: 0, duration: 0.5, ease: "power2.in" }, 4.85);
+
+      tl.to(".room", { rotationX: 0, y: 400, duration: 1.9, ease: "power3.inOut" }, 5.10);
+      tl.to("#ground", { backgroundColor: "#131211", duration: 1.7, ease: "power2.inOut" }, 5.30);
+      tl.to("#floor", { backgroundColor: "#221f1c", duration: 1.7, ease: "power2.inOut" }, 5.30);
+      tl.to("#floor-grid", { opacity: 0.12, duration: 1.2, ease: "power2.out" }, 5.40);
+      tl.to("#floor-outline", { opacity: 0, duration: 1.1, ease: "power2.out" }, 5.40);
+
+      // Music enters here, under everything, and never gets loud.
+      tl.to("#bgm", { volume: 0.18, duration: 0.9, ease: "power1.out" }, 5.05);
+
+      // The walls rise.  // beat-locked: 5.80s (strong cue)
+      tl.fromTo(".grow", { scaleY: 0, opacity: 0 },
+          { scaleY: 1, opacity: 1, duration: 1.25, ease: "power3.out", stagger: 0.07 }, 5.80);
+      tl.to(".grow", { backgroundColor: "#4a4640", duration: 1.4, ease: "power2.inOut" }, 5.80);
+      tl.to("#studio-mark", { opacity: 1, duration: 0.8, ease: "power2.out" }, 6.90);
+
+      /* ------------------------------------- Scene 3 — it snaps (8.2-13.4)
+       * Catalog, a click, and two cabinets latching flush. The two snaps are
+       * deliberately motion-matched rather than beat-matched — they are the
+       * product's signature sensation and must land on the stop frame.
+       */
+      tl.to("#studio-mark", { opacity: 0, duration: 0.5, ease: "power2.in" }, 8.30);
+      tl.fromTo("#catalog", { opacity: 0, x: -320 },
+                { opacity: 1, x: 0, duration: 0.75, ease: "power3.out" }, 8.35);
+
+      tl.to("#cursor", { opacity: 1, duration: 0.25 }, 9.05)
+        .fromTo("#cursor", { x: 470, y: 690 },
+                { x: 150, y: 196, duration: 0.85, ease: "power2.inOut" }, 9.05);
+
+      // The click, then the row lights up.
+      tl.to("#cursor", { scale: 0.86, duration: 0.09, ease: "power2.in" }, 9.80)
+        .to("#cursor", { scale: 1, duration: 0.16, ease: "power2.out" }, 9.89);
+      tl.set("#row1", { className: "row is-active" }, 9.82);
+
+      // Snap 1 — flies in, stops hard against the left wall.
+      tl.to("#cab1 .cab-face", { opacity: 1, duration: 0.16 }, 10.02)
+        .fromTo("#cab1 .cab-face", { x: 280 },
+                { x: 0, duration: 0.42, ease: "power4.out" }, 10.02)
+        .to("#snapline1", { opacity: 1, duration: 0.08 }, 10.30)
+        .to("#snapline1", { opacity: 0, duration: 0.5, ease: "power2.out" }, 10.40);
+
+      tl.to("#cursor", { opacity: 0, duration: 0.3 }, 10.60);
+
+      // Snap 2 — latches beside the first, backs aligned.
+      // beat-locked: 12.65s (strong cue)
+      tl.to("#cab2 .cab-face", { opacity: 1, duration: 0.16 }, 12.37)
+        .fromTo("#cab2 .cab-face", { x: 280 },
+                { x: 0, duration: 0.42, ease: "power4.out" }, 12.37)
+        .to("#snapline2", { opacity: 1, duration: 0.08 }, 12.65)
+        .to("#snapline2", { opacity: 0, duration: 0.5, ease: "power2.out" }, 12.75);
+
+      tl.to("#dim600", { opacity: 1, duration: 0.4, ease: "power2.out" }, 12.80);
+
+      // Music ducks under each snap so the tactile layer stays on top.
+      tl.to("#bgm", { volume: 0.09, duration: 0.12 }, 10.24)
+        .to("#bgm", { volume: 0.18, duration: 0.7 }, 10.50)
+        .to("#bgm", { volume: 0.09, duration: 0.12 }, 12.59)
+        .to("#bgm", { volume: 0.18, duration: 0.7 }, 12.85);
+
+      /* ----------------------------------- Scene 4 — one slab (13.4-18.3)
+       * The worktop templates across the run, then re-templates when a third
+       * cabinet joins it. This is the payoff: the geometry is derived, so the
+       * slab simply re-flows.
+       */
+      tl.to("#dim600", { opacity: 0, duration: 0.4, ease: "power2.in" }, 13.40);
+
+      // Slab covers the two seated cabinets — 400 of its 600px span.
+      tl.to(".wt-scale", { scaleX: 0.6667, duration: 1.05, ease: "power3.out" }, 13.55);
+      tl.to("#wt-caption", { opacity: 1, duration: 0.7, ease: "power2.out" }, 14.80);
+
+      // A third cabinet drops into the run.
+      tl.to("#cab3 .cab-face", { opacity: 1, duration: 0.2 }, 16.85)
+        .fromTo("#cab3 .cab-face", { y: -70 },
+                { y: 0, duration: 0.55, ease: "power3.out" }, 16.85);
+
+      // ...and the worktop re-templates across all three.
+      // beat-locked: 17.91s (strong cue)
+      tl.to(".wt-scale", { scaleX: 1, duration: 0.26, ease: "power4.out" }, 17.91);
+      tl.to("#snapline2", { opacity: 0.9, duration: 0.07 }, 17.91)
+        .to("#snapline2", { opacity: 0, duration: 0.45, ease: "power2.out" }, 17.99);
+
+      /* -------------------------------- Scene 5 — walk inside (18.3-21.3)
+       * The chrome falls away, the button is pressed, and the camera drops to
+       * eye height and pushes into the room.
+       */
+      tl.to("#catalog", { opacity: 0, duration: 0.55, ease: "power2.in" }, 18.32)
+        .to("#wt-caption", { opacity: 0, duration: 0.55, ease: "power2.in" }, 18.32);
+      tl.to("#walk-btn", { opacity: 1, duration: 0.4, ease: "power2.out" }, 18.45);
+
+      // The press, then the move it causes.
+      tl.to("#walk-btn", { scale: 0.95, duration: 0.1, ease: "power2.in" }, 18.90)
+        .to("#walk-btn", { scale: 1, duration: 0.18, ease: "power2.out" }, 19.00)
+        .to("#walk-btn", { opacity: 0, duration: 0.35, ease: "power2.in" }, 19.16);
+
+      tl.to(".room", { z: 420, x: 300, y: 330, duration: 2.05, ease: "power2.inOut" }, 19.05);
+
+      // Warm brass light across the fronts — material, not glow.
+      tl.to(".cab-face", { backgroundColor: "#d8b988", duration: 1.5, ease: "power2.inOut" }, 19.10);
+      tl.to(".grow", { backgroundColor: "#2e2a25", duration: 1.5, ease: "power2.inOut" }, 19.10);
+
+      tl.to("#bgm", { volume: 0.22, duration: 0.9, ease: "power1.out" }, 19.05);
+
+      /* ---------------------------------- Scene 6 — wordmark (21.3-23.8)
+       * No cut to a logo card. The room dims behind and the wordmark settles
+       * over the space that was just built.
+       */
+      tl.to("#outro-veil", { opacity: 1, duration: 0.75, ease: "power2.out" }, 21.32);
+      tl.to("#outro-mark", { opacity: 1, duration: 0.7, ease: "power2.out" }, 21.62);
+      tl.to("#outro-rule", { width: 120, duration: 0.8, ease: "power3.out" }, 21.80);
+      tl.to("#outro-line", { opacity: 1, duration: 0.9, ease: "power2.out" }, 22.05);
+
+      // The bed leaves before the last line, closing in the quiet it opened in.
+      tl.to("#bgm", { volume: 0, duration: 1.25, ease: "power2.in" }, 21.32);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
