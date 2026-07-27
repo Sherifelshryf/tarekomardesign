@@ -1,0 +1,3 @@
+TOD Studio: design, explore, and experience your space before it exists.
+
+A browser-based 3D interior planner where the cabinets snap flush to the millimetre — and the worktop re-templates itself every time you move one.

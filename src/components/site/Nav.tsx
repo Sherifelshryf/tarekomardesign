@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { BrandLogo } from '../BrandLogo';
 
 /**
  * Site navigation.
@@ -39,19 +40,17 @@ export function Nav({ solid = false }: { solid?: boolean }) {
       <header
         className={[
           'fixed inset-x-0 top-0 z-50 transition-colors duration-500',
-          scrolled || solid ? 'border-b border-ink/8 bg-paper/92 backdrop-blur-md' : 'bg-transparent',
+          scrolled || solid
+            ? 'border-b border-ink/8 bg-paper/92 backdrop-blur-md'
+            : 'border-b border-paper/10 bg-ink/35 backdrop-blur-[2px]',
         ].join(' ')}
       >
         <div className="mx-auto flex h-[72px] max-w-[1600px] items-center justify-between px-6 lg:px-12">
           <Link
             href="/"
-            className={[
-              'label shrink-0 transition-colors duration-500',
-              'tracking-[0.28em]',
-              inverted ? 'text-paper' : 'text-ink',
-            ].join(' ')}
+            className="block w-[210px] shrink-0 transition-opacity duration-300 hover:opacity-80 sm:w-[260px]"
           >
-            Tarek Omar Design
+            <BrandLogo compact inverted={inverted} />
           </Link>
 
           <nav className="hidden items-center gap-9 lg:flex">
@@ -111,7 +110,9 @@ export function Nav({ solid = false }: { solid?: boolean }) {
             className="fixed inset-0 z-60 bg-ink text-paper lg:hidden"
           >
             <div className="flex h-[72px] items-center justify-between px-6">
-              <span className="label tracking-[0.28em]">Tarek Omar Design</span>
+              <span className="block w-[230px]">
+                <BrandLogo compact inverted />
+              </span>
               <button
                 type="button"
                 onClick={() => setOpen(false)}

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { BrandLogo } from '@/components/BrandLogo';
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { usePlannerStore, selectCanRedo, selectCanUndo } from '@/stores/plannerStore';
@@ -60,10 +61,10 @@ export function Toolbar({
     <header className="relative z-30 flex h-14 shrink-0 items-center gap-1 border-b border-white/8 bg-[#1a1917] px-3">
       <Link
         href="/"
-        className="label mr-1 shrink-0 px-2 text-paper transition-colors hover:text-brass"
-        title="Back to Tarek Omar Design"
+        className="mr-1 block w-[128px] shrink-0 px-2 transition-opacity hover:opacity-80 sm:w-[170px]"
+        title="Back to Tarek Omar Designs"
       >
-        TOD<span className="ml-1.5 hidden text-ash sm:inline">Studio</span>
+        <BrandLogo compact inverted />
       </Link>
 
       <span className="mx-1 hidden h-5 w-px bg-white/10 sm:block" />

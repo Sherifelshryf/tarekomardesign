@@ -1,0 +1,6 @@
+# Reproducible with `npm install` — the render only needs assets/vendor/gsap.min.js,
+# which is committed.
+node_modules/
+
+# Review artifacts, regenerable with `npx hyperframes snapshot`.
+snapshots/
