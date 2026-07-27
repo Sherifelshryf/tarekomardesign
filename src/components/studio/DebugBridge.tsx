@@ -10,8 +10,12 @@ import { usePlannerStore } from '@/stores/plannerStore';
  *
  * Exposes the planner store, the generated worktop runs and the live camera on
  * `window` so the planner can be driven and asserted against from a console or
- * an end-to-end test. Compiled out of production builds by the `NODE_ENV`
- * guard, and never imported by the marketing site.
+ * an end-to-end test.
+ *
+ * Off in production builds unless `NEXT_PUBLIC_TOD_DEBUG=1` is set at build
+ * time, which is how CI exercises the real production bundle rather than a
+ * development one. A normal deploy leaves the flag unset and these hooks are
+ * dead code. Never imported by the marketing site.
  */
 
 declare global {
@@ -23,7 +27,8 @@ declare global {
   }
 }
 
-const ENABLED = process.env.NODE_ENV !== 'production';
+const ENABLED =
+  process.env.NODE_ENV !== 'production' || process.env.NEXT_PUBLIC_TOD_DEBUG === '1';
 
 /** Store-level hooks. Mounted outside the Canvas. */
 export function DebugBridge() {
