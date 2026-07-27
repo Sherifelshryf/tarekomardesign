@@ -103,7 +103,16 @@ export function DoorPanel({
 
   useFrame((_, delta) => {
     if (!pivot.current) return;
-    const target = -side * easeOut(THREE.MathUtils.clamp(open, 0, 1)) * (Math.PI * 0.62);
+    /*
+     * Doors swing out of the carcass, into the room.
+     *
+     * The module's front faces +Z, and rotating about +Y by θ maps
+     * (1,0,0) → (cos θ, 0, −sin θ). A left-hung leaf extends toward +X from its
+     * hinge, so it needs θ < 0 to bring its free edge forward; a right-hung leaf
+     * extends toward −X and needs θ > 0. Both cases are exactly `side`, which is
+     * −1 for a left hinge and +1 for a right one.
+     */
+    const target = side * easeOut(THREE.MathUtils.clamp(open, 0, 1)) * (Math.PI * 0.62);
     // Frame-rate independent damping keeps the swing smooth everywhere.
     pivot.current.rotation.y = THREE.MathUtils.damp(
       pivot.current.rotation.y,
