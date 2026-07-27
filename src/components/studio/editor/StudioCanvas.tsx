@@ -1,7 +1,7 @@
 'use client';
 
 import { Suspense, useCallback, useEffect, useRef } from 'react';
-import { Canvas, useThree } from '@react-three/fiber';
+import { Canvas, events as createPointerEvents, useThree, type ComputeFunction } from '@react-three/fiber';
 import * as THREE from 'three';
 import { usePlannerStore } from '@/stores/plannerStore';
 import { disposeProceduralTextures } from '@/components/three/proceduralTextures';
@@ -34,6 +34,31 @@ export function StudioCanvas({
 }: StudioCanvasProps) {
   const select = usePlannerStore((s) => s.select);
   const lighting = usePlannerStore((s) => s.project.lighting);
+  const viewMode = usePlannerStore((s) => s.viewMode);
+
+  const canvasEvents = useCallback(
+    (store: Parameters<typeof createPointerEvents>[0]) => {
+      const defaultEvents = createPointerEvents(store);
+
+      return {
+        ...defaultEvents,
+        compute: ((event, state, previous) => {
+          if (viewMode === 'walk' && document.pointerLockElement === state.gl.domElement) {
+            // Pointer lock keeps the browser pointer at its pre-lock location,
+            // while the walkthrough reticle is fixed at screen centre. Cast
+            // walk-mode clicks through the reticle so cabinet doors and drawers
+            // open where the dot is aiming, not where the hidden cursor used to be.
+            state.pointer.set(0, 0);
+            state.raycaster.setFromCamera(state.pointer, state.camera);
+            return;
+          }
+
+          defaultEvents.compute?.(event, state, previous);
+        }) satisfies ComputeFunction,
+      };
+    },
+    [viewMode],
+  );
 
   // Free the shared canvas textures when the Studio unmounts.
   useEffect(() => () => disposeProceduralTextures(), []);
@@ -55,6 +80,7 @@ export function StudioCanvas({
         // Needed so a screenshot can read the buffer after an on-demand render.
         preserveDrawingBuffer: true,
       }}
+      events={canvasEvents}
       onPointerMissed={handleMissed}
       onCreated={({ gl, scene }) => {
         gl.toneMapping = THREE.ACESFilmicToneMapping;
