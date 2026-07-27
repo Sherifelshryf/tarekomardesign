@@ -43,11 +43,14 @@ export function StudioCanvas({
       return {
         ...defaultEvents,
         compute: ((event, state, previous) => {
-          if (viewMode === 'walk' && document.pointerLockElement === state.gl.domElement) {
-            // Pointer lock keeps the browser pointer at its pre-lock location,
-            // while the walkthrough reticle is fixed at screen centre. Cast
-            // walk-mode clicks through the reticle so cabinet doors and drawers
-            // open where the dot is aiming, not where the hidden cursor used to be.
+          const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
+          if (viewMode === 'walk' && !coarsePointer) {
+            // Desktop walkthroughs aim with a fixed centre reticle. Pointer lock
+            // keeps the browser pointer at its pre-lock location, and the click
+            // that reacquires lock after Escape is still delivered before the
+            // browser reports pointer lock again. Cast all desktop walk clicks
+            // through the reticle so doors and drawers never target the hidden
+            // cursor's old screen position.
             state.pointer.set(0, 0);
             state.raycaster.setFromCamera(state.pointer, state.camera);
             return;
