@@ -34,7 +34,6 @@ export function StudioCanvas({
 }: StudioCanvasProps) {
   const select = usePlannerStore((s) => s.select);
   const lighting = usePlannerStore((s) => s.project.lighting);
-  const viewMode = usePlannerStore((s) => s.viewMode);
 
   const canvasEvents = useCallback(
     (store: Parameters<typeof createPointerEvents>[0]) => {
@@ -44,7 +43,7 @@ export function StudioCanvas({
         ...defaultEvents,
         compute: ((event, state, previous) => {
           const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
-          if (viewMode === 'walk' && !coarsePointer) {
+          if (usePlannerStore.getState().viewMode === 'walk' && !coarsePointer) {
             // Desktop walkthroughs aim with a fixed centre reticle. Pointer lock
             // keeps the browser pointer at its pre-lock location, and the click
             // that reacquires lock after Escape is still delivered before the
@@ -60,7 +59,7 @@ export function StudioCanvas({
         }) satisfies ComputeFunction,
       };
     },
-    [viewMode],
+    [],
   );
 
   // Free the shared canvas textures when the Studio unmounts.
