@@ -40,7 +40,9 @@ export function Nav({ solid = false }: { solid?: boolean }) {
       <header
         className={[
           'fixed inset-x-0 top-0 z-50 transition-colors duration-500',
-          scrolled || solid ? 'border-b border-ink/8 bg-paper/92 backdrop-blur-md' : 'bg-transparent',
+          scrolled || solid
+            ? 'border-b border-ink/8 bg-paper/92 backdrop-blur-md'
+            : 'border-b border-paper/10 bg-ink/35 backdrop-blur-[2px]',
         ].join(' ')}
       >
         <div className="mx-auto flex h-[72px] max-w-[1600px] items-center justify-between px-6 lg:px-12">
