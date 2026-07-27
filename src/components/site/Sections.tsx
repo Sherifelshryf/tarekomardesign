@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { BrandLogo } from '../BrandLogo';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MATERIALS } from '@/data/materials';
@@ -349,7 +350,9 @@ export function Footer() {
   return (
     <footer className="border-t border-paper/10 bg-ink py-12 text-paper">
       <div className="mx-auto flex max-w-[1600px] flex-col gap-6 px-6 lg:flex-row lg:items-center lg:justify-between lg:px-12">
-        <p className="label tracking-[0.28em] text-paper/80">Tarek Omar Design</p>
+        <div className="w-[260px] max-w-full">
+          <BrandLogo inverted />
+        </div>
 
         <nav className="flex flex-wrap gap-x-8 gap-y-2">
           {[
