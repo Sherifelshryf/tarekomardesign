@@ -1,0 +1,114 @@
+@import 'tailwindcss';
+
+/**
+ * Tarek Omar Design — visual system.
+ *
+ * A deliberately narrow palette: paper, stone, ink, and a single warm brass
+ * accent. No gradients, no glass, no glow. Type does the work.
+ */
+
+@theme {
+  /* Surfaces */
+  --color-paper: #f7f5f1;
+  --color-paper-dim: #efece6;
+  --color-linen: #e5e1d9;
+  --color-stone: #c9c3b8;
+  --color-ash: #8f8a80;
+  --color-graphite: #4a4640;
+  --color-ink: #221f1c;
+  --color-obsidian: #131211;
+
+  /* The single accent — antique brass. */
+  --color-brass: #b98a4b;
+  --color-brass-soft: #d8b988;
+
+  /* Signal colours, used only for placement feedback. */
+  --color-invalid: #c0392b;
+  --color-valid: #5f7d56;
+
+  --font-display: var(--font-display), 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --tracking-brand: 0.28em;
+  --tracking-label: 0.16em;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+
+  /* Editorial figures: the planner is full of measurements. */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  ::selection {
+    background-color: var(--color-brass);
+    color: var(--color-paper);
+  }
+
+  /* A restrained focus ring that survives the dark Studio chrome. */
+  :focus-visible {
+    outline: 1px solid var(--color-brass);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Small caps label — the workhorse of the whole identity. */
+  .label {
+    font-size: 0.6875rem;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .rule {
+    border-top: 1px solid color-mix(in srgb, var(--color-ink) 12%, transparent);
+  }
+}
+
+/* A slim scrollbar for the Studio's dark panels. */
+.scroll-slim {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+}
+.scroll-slim::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.scroll-slim::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.18);
+  border-radius: 3px;
+}
+.scroll-slim::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Light variant for the marketing site. */
+.scroll-slim-light {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.16) transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

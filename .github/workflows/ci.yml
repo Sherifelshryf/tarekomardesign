@@ -1,0 +1,85 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# A new push supersedes an in-flight run on the same ref.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Types and build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Build
+        run: npm run build
+
+  journey:
+    name: Core user journey
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # Runners have no GPU, so the Studio renders through SwiftShader. The
+      # test drives a small viewport to keep that workable.
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      # The debug hooks the journey drives the planner through are compiled out
+      # of production builds unless this flag is set, so the test runs against
+      # the real production bundle rather than a development server.
+      - name: Build
+        run: npm run build
+        env:
+          NEXT_PUBLIC_TOD_DEBUG: '1'
+
+      - name: Start server and wait for it
+        run: |
+          npm start &
+          for i in $(seq 1 60); do
+            if curl -sf http://localhost:3000 >/dev/null; then
+              echo "Server ready after ${i}s"
+              exit 0
+            fi
+            sleep 1
+          done
+          echo "Server failed to start within 60s" >&2
+          exit 1
+
+      - name: Run core user journey
+        run: npm run test:journey
+
+      # The journey captures each stage; keep them when something fails.
+      - name: Upload screenshots
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: journey-screenshots
+          path: tests/output/
+          if-no-files-found: ignore
+          retention-days: 7
