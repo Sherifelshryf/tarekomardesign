@@ -1,5 +1,5 @@
 /**
- * Tarek Omar Design — core domain types.
+ * Tarek Omar Designs — core domain types.
  *
  * UNITS CONTRACT
  * --------------

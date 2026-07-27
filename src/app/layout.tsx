@@ -17,8 +17,8 @@ const sans = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Tarek Omar Design — Spaces Designed Around You',
-    template: '%s · Tarek Omar Design',
+    default: 'Tarek Omar Designs — Spaces Designed Around You',
+    template: '%s · Tarek Omar Designs',
   },
   description:
     'Interior architecture and bespoke kitchens. Design, explore and experience your space before it exists with TOD Studio, our browser-based 3D interior planner.',
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     'interior architecture',
   ],
   openGraph: {
-    title: 'Tarek Omar Design',
+    title: 'Tarek Omar Designs',
     description: 'Design, explore and experience your space before it exists.',
     type: 'website',
   },

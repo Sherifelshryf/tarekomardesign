@@ -1,8 +1,8 @@
-# Hyperframes Composition Brief: TOD Studio (Tarek Omar Design)
+# Hyperframes Composition Brief: TOD Studio (Tarek Omar Designs)
 
 ## Objective
 Create a short launch-style brag video for **TOD Studio** — the browser-based 3D
-interior planner inside the Tarek Omar Design site.
+interior planner inside the Tarek Omar Designs site.
 
 ## Output
 - Composition directory: `brag-output/composition/`
@@ -18,13 +18,13 @@ interior planner inside the Tarek Omar Design site.
   - `src/components/site/Hero.tsx` — verbatim landing copy
   - `src/types/index.ts`, `src/lib/worktops.ts`, `src/lib/snapping.ts` — product behaviour
   - `HANDOFF.md` — subsystem descriptions
-- Product name: **TOD Studio**, by **Tarek Omar Design**
+- Product name: **TOD Studio**, by **Tarek Omar Designs**
 - Tagline / strongest claim: *Design, explore, and experience your space before it exists.*
 - Key UI or visual moment to recreate: the **flush snap** — a cabinet module
   stopping hard against a wall line — and the **worktop re-templating** across a
   run when a third cabinet joins it.
 - Copy that must appear verbatim:
-  - `TAREK OMAR DESIGN`
+  - `TAREK OMAR DESIGNS`
   - `TOD STUDIO`
   - `3600 mm`
   - `Base Cabinet 600`
@@ -41,7 +41,7 @@ interior planner inside the Tarek Omar Design site.
   from precision and negative space, not energy. Six scenes, but each holds — the
   rhythm must read as measured, never busy.
 - Angle: This is not a startup launch and must not smell like one. Tarek Omar
-  Design is an interior architecture practice whose visual system is "paper,
+  Designs is an interior architecture practice whose visual system is "paper,
   stone, ink, and one brass accent — no gradients, no glass, no glow." So the film
   is an architecture studio's project film for a piece of software. The thesis is
   *precision you can feel*: it opens in the language of drawings — a brass
@@ -82,12 +82,12 @@ Exact values from `src/app/globals.css`:
 Use the storyboard in `brag-output/brag-plan.md` as the creative contract.
 
 Scene summary:
-1. **Drawn to the millimetre** — 4.8s — dimension line draws, `3600 mm` counts up and settles, room plan outline closes, `TAREK OMAR DESIGN` in small caps.
+1. **Drawn to the millimetre** — 4.8s — dimension line draws, `3600 mm` counts up and settles, room plan outline closes, `TAREK OMAR DESIGNS` in small caps.
 2. **The room stands up** — 3.4s — the plan extrudes into walls; paper ground darkens to obsidian; `TOD STUDIO` settles.
 3. **It snaps** — 5.2s — catalog panel slides in with `Base Cabinet 600`; cursor clicks; module snaps flush to the wall; a second latches beside it; `600 mm` label ticks in.
 4. **One slab** — 3.6s — worktop wipes across the run; `WORKTOPS ARE DERIVED, NEVER STORED`; a third cabinet drops in and the slab re-templates instantly.
 5. **Walk inside** — 3.4s — chrome falls away, `WALK INSIDE` pressed, camera drops to eye height and pushes into the kitchen.
-6. **Wordmark** — 2.6s — interior dims, `TAREK OMAR DESIGN` fades up with the tagline beneath.
+6. **Wordmark** — 2.6s — interior dims, `TAREK OMAR DESIGNS` fades up with the tagline beneath.
 
 ## Audio
 - Audio role: **sparse professional accents over a low bed** — tactile first, musical second.

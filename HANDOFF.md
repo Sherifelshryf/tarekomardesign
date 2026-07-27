@@ -8,7 +8,7 @@ what will bite you.**
 
 ## 1. What this is
 
-`Sherifelshryf/tarekomardesign` — the Tarek Omar Design website plus **TOD
+`Sherifelshryf/tarekomardesign` — the Tarek Omar Designs website plus **TOD
 Studio**, a browser-based 3D interior planner (IKEA-kitchen-planner style).
 The planner is the product; the marketing site exists to funnel into it.
 

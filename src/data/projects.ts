@@ -3,7 +3,7 @@ import type { RoomType } from '@/types';
 /**
  * Portfolio content.
  *
- * Placeholder copy standing in for real Tarek Omar Design work. Imagery is
+ * Placeholder copy standing in for real Tarek Omar Designs work. Imagery is
  * generated as CSS/SVG compositions rather than stock photography, so nothing
  * here misrepresents a project that doesn't exist — replace `palette` with an
  * `image` URL and the layouts take real photographs unchanged.

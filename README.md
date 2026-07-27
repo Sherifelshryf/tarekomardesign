@@ -1,7 +1,7 @@
-# Tarek Omar Design
+# Tarek Omar Designs
 
 An interior architecture website and **TOD Studio** — a browser-based 3D interior
-planner in the spirit of an IKEA-style room planner, with Tarek Omar Design's own
+planner in the spirit of an IKEA-style room planner, with Tarek Omar Designs' own
 identity.
 
 The planner is the product. The marketing site exists to lead people into it.

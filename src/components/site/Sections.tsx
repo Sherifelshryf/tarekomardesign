@@ -240,7 +240,7 @@ export function AboutSection() {
             <Reveal>
               <div className="space-y-6 text-[15px] leading-relaxed text-graphite">
                 <p className="text-lg leading-relaxed text-ink">
-                  Tarek Omar Design is an interior architecture practice and joinery workshop working
+                  Tarek Omar Designs is an interior architecture practice and joinery workshop working
                   across Cairo and the North Coast.
                 </p>
                 <p>
@@ -373,7 +373,7 @@ export function Footer() {
         </nav>
 
         <p className="text-[11px] text-paper/40">
-          © {new Date().getFullYear()} Tarek Omar Design
+          © {new Date().getFullYear()} Tarek Omar Designs
         </p>
       </div>
     </footer>

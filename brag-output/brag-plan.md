@@ -1,4 +1,4 @@
-# Brag Plan: TOD Studio (Tarek Omar Design)
+# Brag Plan: TOD Studio (Tarek Omar Designs)
 
 ## What is this app?
 A browser-based 3D interior planner — you draw a room, place real cabinetry that
@@ -7,7 +7,7 @@ result in first person. The marketing site exists to funnel into it.
 
 ## The angle
 This is not a startup launch, and the video must not smell like one. Tarek Omar
-Design is an interior architecture practice; the software's whole visual system
+Designs is an interior architecture practice; the software's whole visual system
 is "paper, stone, ink, and one brass accent — no gradients, no glass, no glow."
 
 So the film is an **architecture studio's project film for a piece of software.**
@@ -122,7 +122,7 @@ to the millimetre — and the worktop re-flows itself every time you move one.
 Paper ground `#f7f5f1`. A faint plan grid fades up. A brass dimension line draws
 itself left to right with end ticks snapping in; above it a figure counts 0 → 3600
 and settles as `3600 mm` in tabular figures. The room's plan outline completes
-around it. Small caps, bottom left: `TAREK OMAR DESIGN`.
+around it. Small caps, bottom left: `TAREK OMAR DESIGNS`.
 Sequential/interaction: yes — left tick, line draw, right tick, then the count-up,
 then the outline closing. Four discrete arrivals, each given room.
 Audio intent: near-silence. Establish that this film is calm and precise.
@@ -180,7 +180,7 @@ Music: bed lifts slightly, then begins its fade.
 Transition mood: soft → Scene 6
 
 ### Scene 6 — Wordmark — 2.6s
-No cut. The held interior dims behind. `TAREK OMAR DESIGN` fades up in letterspaced
+No cut. The held interior dims behind. `TAREK OMAR DESIGNS` fades up in letterspaced
 small caps, with the site's own line beneath in Cormorant Garamond light:
 *Design, explore, and experience your space before it exists.*
 Sequential/interaction: none — one fade, one long hold.
