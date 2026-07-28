@@ -1,7 +1,7 @@
 import type { MaterialFamily, MaterialOption } from '@/types';
 
 /**
- * The Tarek Omar Design finish library.
+ * The Weblite Design finish library.
  *
  * Every option is fully procedural — colour plus a generated grain/veining
  * pattern — so the planner is visually complete with zero texture downloads.

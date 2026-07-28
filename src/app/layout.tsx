@@ -17,11 +17,11 @@ const sans = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Tarek Omar Design — Spaces Designed Around You',
-    template: '%s · Tarek Omar Design',
+    default: 'Weblite Design — Spaces Designed Around You',
+    template: '%s · Weblite Design',
   },
   description:
-    'Interior architecture and bespoke kitchens. Design, explore and experience your space before it exists with TOD Studio, our browser-based 3D interior planner.',
+    'Interior architecture and bespoke kitchens. Design, explore and experience your space before it exists with Weblite Design Studio, our browser-based 3D interior planner.',
   keywords: [
     'interior design',
     'kitchen design',
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     'interior architecture',
   ],
   openGraph: {
-    title: 'Tarek Omar Design',
+    title: 'Weblite Design',
     description: 'Design, explore and experience your space before it exists.',
     type: 'website',
   },

@@ -67,7 +67,7 @@ export function InteriorsSection() {
               </h2>
               <p className="mt-6 max-w-sm text-[15px] leading-relaxed text-graphite">
                 The same team, the same workshop and the same detailing across every room of a home.
-                TOD Studio is built the same way — one planner, one product library, extending room
+                Weblite Design Studio is built the same way — one planner, one product library, extending room
                 by room.
               </p>
             </Reveal>

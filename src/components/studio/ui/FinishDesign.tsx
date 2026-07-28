@@ -43,7 +43,7 @@ export function FinishDesign({
           <p className="label text-brass">Enquiry received</p>
           <h2 className="mt-3 font-display text-4xl font-light text-paper">Thank you.</h2>
           <p className="mx-auto mt-4 max-w-sm text-sm leading-relaxed text-ash">
-            Your design and its full specification have been logged. A member of the Tarek Omar
+            Your design and its full specification have been logged. A member of the Weblite
             Design team will be in touch to arrange a technical survey.
           </p>
           {reference && (

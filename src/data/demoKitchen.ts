@@ -35,42 +35,42 @@ interface Placement {
  * meet the side walls flush and generate one continuous worktop.
  */
 const PLACEMENTS: Placement[] = [
-  { productId: 'TOD-TAL-OVN', x: -2000, z: BASE_Z },
-  { productId: 'TOD-TAL-060', x: -1400, z: BASE_Z },
-  { productId: 'TOD-CAB-080', x: -700, z: BASE_Z },
-  { productId: 'TOD-SNK-080', x: 100, z: BASE_Z },
-  { productId: 'TOD-DRW-060', x: 800, z: BASE_Z },
-  { productId: 'TOD-CAB-060', x: 1400, z: BASE_Z },
-  { productId: 'TOD-APP-DWS', x: 2000, z: BASE_Z },
+  { productId: 'WEB-TAL-OVN', x: -2000, z: BASE_Z },
+  { productId: 'WEB-TAL-060', x: -1400, z: BASE_Z },
+  { productId: 'WEB-CAB-080', x: -700, z: BASE_Z },
+  { productId: 'WEB-SNK-080', x: 100, z: BASE_Z },
+  { productId: 'WEB-DRW-060', x: 800, z: BASE_Z },
+  { productId: 'WEB-CAB-060', x: 1400, z: BASE_Z },
+  { productId: 'WEB-APP-DWS', x: 2000, z: BASE_Z },
 
   // Wall storage, stepping around the extractor above the hob.
-  { productId: 'TOD-WAL-080', x: -700, z: WALL_Z },
-  { productId: 'TOD-WAL-060', x: 0, z: WALL_Z },
-  { productId: 'TOD-WAL-080', x: 1700, z: WALL_Z },
-  { productId: 'TOD-WAL-OPN', x: 1700, z: NORTH_Z + 150, y: 2250 },
+  { productId: 'WEB-WAL-080', x: -700, z: WALL_Z },
+  { productId: 'WEB-WAL-060', x: 0, z: WALL_Z },
+  { productId: 'WEB-WAL-080', x: 1700, z: WALL_Z },
+  { productId: 'WEB-WAL-OPN', x: 1700, z: NORTH_Z + 150, y: 2250 },
 
   // Worktop fittings.
-  { productId: 'TOD-SNK-SGL', x: 100, z: BASE_Z, y: 720 },
-  { productId: 'TOD-APP-HOB', x: 800, z: BASE_Z, y: 920 },
-  { productId: 'TOD-APP-HOD', x: 800, z: NORTH_Z + 250, y: 1500 },
+  { productId: 'WEB-SNK-SGL', x: 100, z: BASE_Z, y: 720 },
+  { productId: 'WEB-APP-HOB', x: 800, z: BASE_Z, y: 920 },
+  { productId: 'WEB-APP-HOD', x: 800, z: NORTH_Z + 250, y: 1500 },
 
   // Tall refrigeration against the west wall, facing into the room.
-  { productId: 'TOD-APP-FRG', x: WEST_X + 340, z: -1500, rotationY: 90 },
+  { productId: 'WEB-APP-FRG', x: WEST_X + 340, z: -1500, rotationY: 90 },
 
   // Island with seating and pendants above.
-  { productId: 'TOD-ISL-180', x: 0, z: -200, worktop: 'mat-marble-white' },
-  { productId: 'TOD-ACC-STL', x: -450, z: 560, rotationY: 180, front: 'mat-charcoal' },
-  { productId: 'TOD-ACC-STL', x: 450, z: 560, rotationY: 180, front: 'mat-charcoal' },
-  { productId: 'TOD-LGT-PND', x: -450, z: -200, y: 1650 },
-  { productId: 'TOD-LGT-PND', x: 450, z: -200, y: 1650 },
+  { productId: 'WEB-ISL-180', x: 0, z: -200, worktop: 'mat-marble-white' },
+  { productId: 'WEB-ACC-STL', x: -450, z: 560, rotationY: 180, front: 'mat-charcoal' },
+  { productId: 'WEB-ACC-STL', x: 450, z: 560, rotationY: 180, front: 'mat-charcoal' },
+  { productId: 'WEB-LGT-PND', x: -450, z: -200, y: 1650 },
+  { productId: 'WEB-LGT-PND', x: 450, z: -200, y: 1650 },
 
   // Architecture.
-  { productId: 'TOD-OPN-WIN', x: ROOM.width / 2, z: 700, rotationY: 270, y: 950 },
-  { productId: 'TOD-OPN-DOR', x: -1200, z: ROOM.length / 2, rotationY: 180 },
+  { productId: 'WEB-OPN-WIN', x: ROOM.width / 2, z: 700, rotationY: 270, y: 950 },
+  { productId: 'WEB-OPN-DOR', x: -1200, z: ROOM.length / 2, rotationY: 180 },
 
   // Styling.
-  { productId: 'TOD-ACC-PLT', x: 1850, z: 1900 },
-  { productId: 'TOD-ACC-RUG', x: 0, z: 1500, width: 2400, front: 'mat-sage' },
+  { productId: 'WEB-ACC-PLT', x: 1850, z: 1900 },
+  { productId: 'WEB-ACC-RUG', x: 0, z: 1500, width: 2400, front: 'mat-sage' },
 ];
 
 const DEMO_FRONT = 'mat-walnut-dark';
@@ -107,7 +107,7 @@ function place(placement: Placement): PlacedObject | null {
 /** Builds a fresh copy of the demo design. */
 export function createDemoKitchen(): Project {
   const project = createProject({
-    name: 'TOD Demo Kitchen',
+    name: 'Weblite Demo Kitchen',
     room: {
       width: ROOM.width,
       length: ROOM.length,

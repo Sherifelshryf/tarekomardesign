@@ -163,14 +163,14 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                       Design something like this, in your own room.
                     </h2>
                     <p className="mt-4 max-w-md text-[15px] leading-relaxed text-graphite">
-                      Open TOD Studio, enter your dimensions, and build it in three dimensions.
+                      Open Weblite Design Studio, enter your dimensions, and build it in three dimensions.
                     </p>
                   </div>
                   <Link
                     href="/studio"
                     className="label group inline-flex shrink-0 items-center gap-2.5 bg-ink px-7 py-3.5 text-paper transition-colors duration-300 hover:bg-brass hover:text-obsidian"
                   >
-                    Open TOD Studio
+                    Open Weblite Design Studio
                     <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                   </Link>
                 </div>

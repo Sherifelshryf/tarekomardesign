@@ -32,10 +32,10 @@ function isQuoteRequest(value: unknown): value is QuoteRequest {
 }
 
 async function record(quote: QuoteRequest): Promise<string> {
-  const reference = `TOD-${new Date().getFullYear()}-${quote.id.slice(-6).toUpperCase()}`;
+  const reference = `WEB-${new Date().getFullYear()}-${quote.id.slice(-6).toUpperCase()}`;
 
   // Replace this with a database insert and a notification to the studio.
-  console.info('[TOD] Quote request', {
+  console.info('[Weblite Design] Quote request', {
     reference,
     name: quote.name,
     location: quote.location,

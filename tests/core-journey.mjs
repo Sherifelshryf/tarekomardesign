@@ -25,7 +25,7 @@ page.on('pageerror', (e) => errors.push('PAGEERROR: ' + e.message));
 page.on('response', (r) => { if (r.status() >= 400) errors.push(`HTTP ${r.status()} ${r.url()}`); });
 
 // Read planner store state from the page.
-const state = () => page.evaluate(() => window.__tod?.getState?.() ?? null);
+const state = () => page.evaluate(() => window.__weblite?.getState?.() ?? null);
 
 /* 1-3: landing → studio */
 await page.goto(BASE, { waitUntil: 'networkidle' });
@@ -35,7 +35,7 @@ await page.screenshot({ path: `${OUT}01-landing.png` });
 await page.getByRole('link', { name: /Design Your Space/i }).first().click();
 await page.waitForURL('**/studio');
 await page.waitForTimeout(3500);
-step('3. TOD Studio opens', page.url().includes('/studio'));
+step('3. Weblite Design Studio opens', page.url().includes('/studio'));
 
 /* 4-5: create a 4 x 5 m room */
 const hasSetup = await page.getByText('Create your space.').isVisible().catch(() => false);
@@ -57,10 +57,10 @@ await page.screenshot({ path: `${OUT}02-room.png` });
 /* 6-8: add an 80cm cabinet from the Cabinets group */
 await page.getByRole('button', { name: 'Cabinets', exact: true }).click();
 await page.waitForTimeout(400);
-await page.getByTitle(/TOD-CAB-080/).click();
+await page.getByTitle(/WEB-CAB-080/).click();
 await page.waitForTimeout(900);
 s = await state();
-step('7-8. 80cm cabinet placed', s?.project.objects.length === 1 && s.project.objects[0].productId === 'TOD-CAB-080',
+step('7-8. 80cm cabinet placed', s?.project.objects.length === 1 && s.project.objects[0].productId === 'WEB-CAB-080',
   `${s?.project.objects.length} object(s)`);
 
 /* 9-10: it snapped to a wall */
@@ -72,7 +72,7 @@ step('10. Cabinet snapped flush to a wall', snappedToWall,
   `pos x=${first.position.x} z=${first.position.z} rot=${first.rotationY}`);
 
 /* 11-12: add a second cabinet, expect it beside the first */
-await page.getByTitle(/TOD-CAB-060/).click();
+await page.getByTitle(/WEB-CAB-060/).click();
 await page.waitForTimeout(900);
 s = await state();
 step('11. Second cabinet added', s.project.objects.length === 2);
@@ -92,13 +92,13 @@ step('14. Finish changed to walnut', sel?.materials.front === 'mat-walnut-dark',
 /* 15: kitchen island */
 await page.getByRole('button', { name: 'Islands', exact: true }).click();
 await page.waitForTimeout(400);
-await page.getByTitle(/TOD-ISL-180/).click();
+await page.getByTitle(/WEB-ISL-180/).click();
 await page.waitForTimeout(900);
 s = await state();
-step('15. Island added', s.project.objects.some((o) => o.productId === 'TOD-ISL-180'));
+step('15. Island added', s.project.objects.some((o) => o.productId === 'WEB-ISL-180'));
 
 /* worktop generation */
-const runs = await page.evaluate(() => window.__todWorktops?.() ?? null);
+const runs = await page.evaluate(() => window.__webliteWorktops?.() ?? null);
 step('16b. Continuous worktop generated', Array.isArray(runs) && runs.length > 0,
   runs ? `${runs.length} run(s), ${runs.map((r) => Math.round(r.length)).join('/')}mm` : 'none');
 
@@ -118,10 +118,10 @@ await page.screenshot({ path: `${OUT}04-3d.png` });
 
 /* undo / redo */
 const before = (await state()).project.objects.length;
-await page.evaluate(() => window.__tod.getState().undo());
+await page.evaluate(() => window.__weblite.getState().undo());
 await page.waitForTimeout(400);
 const afterUndo = (await state()).project.objects.length;
-await page.evaluate(() => window.__tod.getState().redo());
+await page.evaluate(() => window.__weblite.getState().redo());
 await page.waitForTimeout(400);
 const afterRedo = (await state()).project.objects.length;
 step('Undo / redo change the design', afterUndo === before - 1 && afterRedo === before,
@@ -132,17 +132,17 @@ await page.getByRole('button', { name: 'Walk Inside' }).click();
 await page.waitForTimeout(2200);
 s = await state();
 step('19. Walkthrough entered', s.viewMode === 'walk');
-const eye = await page.evaluate(() => window.__todCamera?.() ?? null);
+const eye = await page.evaluate(() => window.__webliteCamera?.() ?? null);
 step('20. Camera at human eye height', eye && Math.abs(eye.y - 1.62) < 0.02, eye ? `y=${eye.y.toFixed(2)}m` : 'n/a');
 await page.screenshot({ path: `${OUT}05-walk.png` });
 
 /* move forward with W and confirm the camera actually travels */
-const posBefore = await page.evaluate(() => window.__todCamera());
+const posBefore = await page.evaluate(() => window.__webliteCamera());
 await page.keyboard.down('KeyW');
 await page.waitForTimeout(3000);
 await page.keyboard.up('KeyW');
 await page.waitForTimeout(300);
-const posAfter = await page.evaluate(() => window.__todCamera());
+const posAfter = await page.evaluate(() => window.__webliteCamera());
 const travelled = Math.hypot(posAfter.x - posBefore.x, posAfter.z - posBefore.z);
 step('20b. WASD moves the walker', travelled > 0.4, `travelled ${travelled.toFixed(2)}m`);
 

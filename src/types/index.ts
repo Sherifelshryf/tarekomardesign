@@ -1,5 +1,5 @@
 /**
- * Tarek Omar Design — core domain types.
+ * Weblite Design — core domain types.
  *
  * UNITS CONTRACT
  * --------------
@@ -143,7 +143,7 @@ export interface ResizeRange {
 }
 
 export interface Product {
-  /** Stable SKU, e.g. `TOD-CAB-001`. */
+  /** Stable SKU, e.g. `WEB-CAB-001`. */
   id: string;
   name: string;
   category: ProductCategory;

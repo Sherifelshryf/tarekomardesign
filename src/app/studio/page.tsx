@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { StudioLoader } from '@/components/studio/StudioLoader';
 
 export const metadata: Metadata = {
-  title: 'TOD Studio',
+  title: 'Weblite Design Studio',
   description:
     'Design your kitchen in 3D. Place real modules, choose finishes, and walk through the result at human scale.',
 };

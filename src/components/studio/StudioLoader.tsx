@@ -15,7 +15,7 @@ const StudioShell = dynamic(
     ssr: false,
     loading: () => (
       <div className="flex h-[100dvh] items-center justify-center bg-[#141311]">
-        <p className="label text-[#8f8a80]">Loading TOD Studio</p>
+        <p className="label text-[#8f8a80]">Loading Weblite Design Studio</p>
       </div>
     ),
   },

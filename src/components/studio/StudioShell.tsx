@@ -18,7 +18,7 @@ import { WalkOverlay } from './ui/WalkOverlay';
 import { ToolButton, cx } from './ui/primitives';
 
 /**
- * TOD Studio.
+ * Weblite Design Studio.
  *
  * Owns layout and the lifecycle concerns the 3D scene shouldn't care about:
  * restoring the last session, autosaving, capture, and the panels that open
@@ -96,7 +96,7 @@ export function StudioShell() {
         setSavedLabel('Saved');
         if (!options?.silent) setToast('Project saved');
       } catch (error) {
-        console.warn('[TOD] Save failed:', error);
+        console.warn('[Weblite Design] Save failed:', error);
         setToast('Could not save — storage may be full');
       } finally {
         setSaving(false);
@@ -133,7 +133,7 @@ export function StudioShell() {
     }
     const link = document.createElement('a');
     link.href = dataUrl;
-    link.download = `${project.name.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}-tod.png`;
+    link.download = `${project.name.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}-weblite.png`;
     link.click();
     setToast('Design captured');
   }, [project.name]);

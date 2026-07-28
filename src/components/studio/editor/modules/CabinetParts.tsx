@@ -257,7 +257,7 @@ export function Handle({ style, materials, orientation, length, position }: Hand
     );
   }
 
-  // `minimal` — a slim edge-pull, the default TOD detail.
+  // `minimal` — a slim edge-pull, the default Weblite Design detail.
   return (
     <mesh position={position} castShadow>
       <boxGeometry args={vertical ? [0.012, length, 0.016] : [length, 0.012, 0.016]} />

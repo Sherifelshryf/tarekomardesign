@@ -12,7 +12,7 @@ import { usePlannerStore } from '@/stores/plannerStore';
  * `window` so the planner can be driven and asserted against from a console or
  * an end-to-end test.
  *
- * Off in production builds unless `NEXT_PUBLIC_TOD_DEBUG=1` is set at build
+ * Off in production builds unless `NEXT_PUBLIC_WEBLITE_DEBUG=1` is set at build
  * time, which is how CI exercises the real production bundle rather than a
  * development one. A normal deploy leaves the flag unset and these hooks are
  * dead code. Never imported by the marketing site.
@@ -20,25 +20,25 @@ import { usePlannerStore } from '@/stores/plannerStore';
 
 declare global {
   interface Window {
-    __tod?: typeof usePlannerStore;
-    __todWorktops?: () => ReturnType<typeof generateWorktopRuns>;
-    __todCamera?: () => { x: number; y: number; z: number };
-    __todRenderInfo?: () => { calls: number; triangles: number; geometries: number; textures: number; programs: number };
+    __weblite?: typeof usePlannerStore;
+    __webliteWorktops?: () => ReturnType<typeof generateWorktopRuns>;
+    __webliteCamera?: () => { x: number; y: number; z: number };
+    __webliteRenderInfo?: () => { calls: number; triangles: number; geometries: number; textures: number; programs: number };
   }
 }
 
 const ENABLED =
-  process.env.NODE_ENV !== 'production' || process.env.NEXT_PUBLIC_TOD_DEBUG === '1';
+  process.env.NODE_ENV !== 'production' || process.env.NEXT_PUBLIC_WEBLITE_DEBUG === '1';
 
 /** Store-level hooks. Mounted outside the Canvas. */
 export function DebugBridge() {
   useEffect(() => {
     if (!ENABLED) return;
-    window.__tod = usePlannerStore;
-    window.__todWorktops = () => generateWorktopRuns(usePlannerStore.getState().project.objects);
+    window.__weblite = usePlannerStore;
+    window.__webliteWorktops = () => generateWorktopRuns(usePlannerStore.getState().project.objects);
     return () => {
-      delete window.__tod;
-      delete window.__todWorktops;
+      delete window.__weblite;
+      delete window.__webliteWorktops;
     };
   }, []);
 
@@ -52,12 +52,12 @@ export function DebugCameraBridge() {
 
   useEffect(() => {
     if (!ENABLED) return;
-    window.__todCamera = () => ({
+    window.__webliteCamera = () => ({
       x: camera.position.x,
       y: camera.position.y,
       z: camera.position.z,
     });
-    window.__todRenderInfo = () => ({
+    window.__webliteRenderInfo = () => ({
       calls: gl.info.render.calls,
       triangles: gl.info.render.triangles,
       geometries: gl.info.memory.geometries,
@@ -65,8 +65,8 @@ export function DebugCameraBridge() {
       programs: gl.info.programs?.length ?? 0,
     });
     return () => {
-      delete window.__todCamera;
-      delete window.__todRenderInfo;
+      delete window.__webliteCamera;
+      delete window.__webliteRenderInfo;
     };
   }, [camera, gl]);
 

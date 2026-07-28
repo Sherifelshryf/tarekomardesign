@@ -1,7 +1,7 @@
-# Tarek Omar Design
+# Weblite Design
 
-An interior architecture website and **TOD Studio** — a browser-based 3D interior
-planner in the spirit of an IKEA-style room planner, with Tarek Omar Design's own
+An interior architecture website and **Weblite Design Studio** — a browser-based 3D interior
+planner in the spirit of an IKEA-style room planner, with Weblite Design's own
 identity.
 
 The planner is the product. The marketing site exists to lead people into it.

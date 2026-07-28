@@ -1,7 +1,7 @@
 'use client';
 
 import { Suspense, useCallback, useEffect, useRef } from 'react';
-import { Canvas, useThree } from '@react-three/fiber';
+import { Canvas, events as createPointerEvents, useThree, type ComputeFunction } from '@react-three/fiber';
 import * as THREE from 'three';
 import { usePlannerStore } from '@/stores/plannerStore';
 import { disposeProceduralTextures } from '@/components/three/proceduralTextures';
@@ -35,6 +35,33 @@ export function StudioCanvas({
   const select = usePlannerStore((s) => s.select);
   const lighting = usePlannerStore((s) => s.project.lighting);
 
+  const canvasEvents = useCallback(
+    (store: Parameters<typeof createPointerEvents>[0]) => {
+      const defaultEvents = createPointerEvents(store);
+
+      return {
+        ...defaultEvents,
+        compute: ((event, state, previous) => {
+          const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
+          if (usePlannerStore.getState().viewMode === 'walk' && !coarsePointer) {
+            // Desktop walkthroughs aim with a fixed centre reticle. Pointer lock
+            // keeps the browser pointer at its pre-lock location, and the click
+            // that reacquires lock after Escape is still delivered before the
+            // browser reports pointer lock again. Cast all desktop walk clicks
+            // through the reticle so doors and drawers never target the hidden
+            // cursor's old screen position.
+            state.pointer.set(0, 0);
+            state.raycaster.setFromCamera(state.pointer, state.camera);
+            return;
+          }
+
+          defaultEvents.compute?.(event, state, previous);
+        }) satisfies ComputeFunction,
+      };
+    },
+    [],
+  );
+
   // Free the shared canvas textures when the Studio unmounts.
   useEffect(() => () => disposeProceduralTextures(), []);
 
@@ -55,6 +82,7 @@ export function StudioCanvas({
         // Needed so a screenshot can read the buffer after an on-demand render.
         preserveDrawingBuffer: true,
       }}
+      events={canvasEvents}
       onPointerMissed={handleMissed}
       onCreated={({ gl, scene }) => {
         gl.toneMapping = THREE.ACESFilmicToneMapping;
@@ -115,7 +143,7 @@ function CaptureBridge({ onCaptureReady }: { onCaptureReady?: (fn: () => string 
         gl.render(scene, camera);
         return gl.domElement.toDataURL('image/png');
       } catch (error) {
-        console.warn('[TOD] Capture failed:', error);
+        console.warn('[Weblite Design] Capture failed:', error);
         return null;
       }
     });

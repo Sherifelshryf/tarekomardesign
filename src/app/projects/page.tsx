@@ -7,7 +7,7 @@ import type { ProjectCategory } from '@/data/projects';
 export const metadata: Metadata = {
   title: 'Projects',
   description:
-    'Kitchens, dressing rooms and complete interiors by Tarek Omar Design, across Cairo and the North Coast.',
+    'Kitchens, dressing rooms and complete interiors by Weblite Design, across Cairo and the North Coast.',
 };
 
 const VALID_FILTERS = new Set(['kitchens', 'residential', 'dressing', 'commercial']);

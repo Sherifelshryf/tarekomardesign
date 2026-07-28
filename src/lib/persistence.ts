@@ -29,9 +29,9 @@ export interface ProjectRepository {
   setActiveId(id: string | null): Promise<void>;
 }
 
-const PROJECT_KEY = 'tod.studio.projects.v1';
-const ACTIVE_KEY = 'tod.studio.active.v1';
-const QUOTE_KEY = 'tod.studio.quotes.v1';
+const PROJECT_KEY = 'weblite.design.studio.projects.v1';
+const ACTIVE_KEY = 'weblite.design.studio.active.v1';
+const QUOTE_KEY = 'weblite.design.studio.quotes.v1';
 
 interface StoredRecord {
   project: Project;
@@ -63,7 +63,7 @@ function writeAll(map: StoredMap): void {
     window.localStorage.setItem(PROJECT_KEY, JSON.stringify(map));
   } catch (error) {
     // Most likely the 5 MB quota — surface it without losing the session.
-    console.warn('[TOD] Could not persist project:', error);
+    console.warn('[Weblite Design] Could not persist project:', error);
   }
 }
 
@@ -131,7 +131,7 @@ export function queueQuoteLocally(quote: QuoteRequest): void {
     list.push(quote);
     window.localStorage.setItem(QUOTE_KEY, JSON.stringify(list));
   } catch (error) {
-    console.warn('[TOD] Could not queue quote request:', error);
+    console.warn('[Weblite Design] Could not queue quote request:', error);
   }
 }
 

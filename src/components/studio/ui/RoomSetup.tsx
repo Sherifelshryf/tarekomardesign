@@ -52,7 +52,7 @@ export function RoomSetup({ onDone }: { onDone: () => void }) {
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         className="w-full max-w-3xl"
       >
-        <p className="label text-brass">TOD Studio</p>
+        <p className="label text-brass">Weblite Design Studio</p>
         <h1 className="mt-3 font-display text-5xl leading-[0.95] font-light text-paper sm:text-6xl">
           Create your space.
         </h1>

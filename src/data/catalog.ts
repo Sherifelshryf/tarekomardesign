@@ -1,7 +1,7 @@
 import type { CatalogGroupId, MaterialSlot, Product, RoomType } from '@/types';
 
 /**
- * The TOD product catalog.
+ * The Weblite Design product catalog.
  *
  * Products are pure data. No component imports a specific SKU — the planner,
  * catalog UI, properties panel, snapping engine and bill of materials all read
@@ -107,15 +107,15 @@ function baseCabinet({ id, name, width, drawers, doors, price }: BaseCabinetSpec
 
 export const PRODUCTS: Product[] = [
   /* ------------------------------------------------------- base cabinets */
-  baseCabinet({ id: 'TOD-CAB-040', name: '40cm Base Cabinet', width: 400, drawers: 0, doors: 1, price: 4200 }),
-  baseCabinet({ id: 'TOD-CAB-060', name: '60cm Base Cabinet', width: 600, drawers: 0, doors: 1, price: 5400 }),
-  baseCabinet({ id: 'TOD-CAB-080', name: '80cm Base Cabinet', width: 800, drawers: 0, doors: 2, price: 6600 }),
-  baseCabinet({ id: 'TOD-CAB-100', name: '100cm Base Cabinet', width: 1000, drawers: 0, doors: 2, price: 7800 }),
-  baseCabinet({ id: 'TOD-DRW-060', name: '60cm Drawer Cabinet', width: 600, drawers: 3, doors: 0, price: 7900 }),
-  baseCabinet({ id: 'TOD-DRW-080', name: '80cm Drawer Cabinet', width: 800, drawers: 4, doors: 0, price: 9400 }),
+  baseCabinet({ id: 'WEB-CAB-040', name: '40cm Base Cabinet', width: 400, drawers: 0, doors: 1, price: 4200 }),
+  baseCabinet({ id: 'WEB-CAB-060', name: '60cm Base Cabinet', width: 600, drawers: 0, doors: 1, price: 5400 }),
+  baseCabinet({ id: 'WEB-CAB-080', name: '80cm Base Cabinet', width: 800, drawers: 0, doors: 2, price: 6600 }),
+  baseCabinet({ id: 'WEB-CAB-100', name: '100cm Base Cabinet', width: 1000, drawers: 0, doors: 2, price: 7800 }),
+  baseCabinet({ id: 'WEB-DRW-060', name: '60cm Drawer Cabinet', width: 600, drawers: 3, doors: 0, price: 7900 }),
+  baseCabinet({ id: 'WEB-DRW-080', name: '80cm Drawer Cabinet', width: 800, drawers: 4, doors: 0, price: 9400 }),
 
   {
-    id: 'TOD-SNK-080',
+    id: 'WEB-SNK-080',
     name: '80cm Sink Cabinet',
     category: 'sink-cabinet',
     group: 'cabinets',
@@ -133,7 +133,7 @@ export const PRODUCTS: Product[] = [
     tags: ['kitchen', 'base', 'sink'],
   },
   {
-    id: 'TOD-COR-090',
+    id: 'WEB-COR-090',
     name: '90cm Corner Cabinet',
     category: 'corner-cabinet',
     group: 'cabinets',
@@ -152,7 +152,7 @@ export const PRODUCTS: Product[] = [
 
   /* ------------------------------------------------------- wall cabinets */
   {
-    id: 'TOD-WAL-060',
+    id: 'WEB-WAL-060',
     name: '60cm Wall Cabinet',
     category: 'wall-cabinet',
     group: 'wall',
@@ -177,7 +177,7 @@ export const PRODUCTS: Product[] = [
     tags: ['kitchen', 'wall', 'storage'],
   },
   {
-    id: 'TOD-WAL-080',
+    id: 'WEB-WAL-080',
     name: '80cm Wall Cabinet',
     category: 'wall-cabinet',
     group: 'wall',
@@ -202,7 +202,7 @@ export const PRODUCTS: Product[] = [
     tags: ['kitchen', 'wall', 'storage'],
   },
   {
-    id: 'TOD-WAL-OPN',
+    id: 'WEB-WAL-OPN',
     name: '80cm Open Shelf Unit',
     category: 'wall-cabinet',
     group: 'wall',
@@ -221,7 +221,7 @@ export const PRODUCTS: Product[] = [
 
   /* ------------------------------------------------------- tall cabinets */
   {
-    id: 'TOD-TAL-060',
+    id: 'WEB-TAL-060',
     name: '60cm Tall Cabinet',
     category: 'tall-cabinet',
     group: 'tall',
@@ -246,7 +246,7 @@ export const PRODUCTS: Product[] = [
     tags: ['kitchen', 'tall', 'larder'],
   },
   {
-    id: 'TOD-TAL-OVN',
+    id: 'WEB-TAL-OVN',
     name: '60cm Tall Oven Housing',
     category: 'tall-cabinet',
     group: 'tall',
@@ -265,7 +265,7 @@ export const PRODUCTS: Product[] = [
 
   /* -------------------------------------------------------------- islands */
   {
-    id: 'TOD-ISL-180',
+    id: 'WEB-ISL-180',
     name: '180cm Kitchen Island',
     category: 'island',
     group: 'islands',
@@ -286,7 +286,7 @@ export const PRODUCTS: Product[] = [
     tags: ['kitchen', 'island'],
   },
   {
-    id: 'TOD-ISL-240',
+    id: 'WEB-ISL-240',
     name: '240cm Kitchen Island',
     category: 'island',
     group: 'islands',
@@ -309,7 +309,7 @@ export const PRODUCTS: Product[] = [
 
   /* ----------------------------------------------------------- worktops */
   {
-    id: 'TOD-WTP-SEG',
+    id: 'WEB-WTP-SEG',
     name: 'Worktop Segment',
     category: 'countertop',
     group: 'countertops',
@@ -332,7 +332,7 @@ export const PRODUCTS: Product[] = [
 
   /* -------------------------------------------------------------- sinks */
   {
-    id: 'TOD-SNK-SGL',
+    id: 'WEB-SNK-SGL',
     name: 'Single Bowl Sink',
     category: 'sink',
     group: 'sinks',
@@ -348,7 +348,7 @@ export const PRODUCTS: Product[] = [
     tags: ['kitchen', 'sink'],
   },
   {
-    id: 'TOD-SNK-DBL',
+    id: 'WEB-SNK-DBL',
     name: 'Double Bowl Sink',
     category: 'sink',
     group: 'sinks',
@@ -366,7 +366,7 @@ export const PRODUCTS: Product[] = [
 
   /* --------------------------------------------------------- appliances */
   {
-    id: 'TOD-APP-FRG',
+    id: 'WEB-APP-FRG',
     name: 'Tall Fridge Freezer',
     category: 'appliance',
     group: 'appliances',
@@ -382,7 +382,7 @@ export const PRODUCTS: Product[] = [
     tags: ['kitchen', 'appliance'],
   },
   {
-    id: 'TOD-APP-OVN',
+    id: 'WEB-APP-OVN',
     name: 'Built-in Oven',
     category: 'appliance',
     group: 'appliances',
@@ -398,7 +398,7 @@ export const PRODUCTS: Product[] = [
     tags: ['kitchen', 'appliance'],
   },
   {
-    id: 'TOD-APP-HOB',
+    id: 'WEB-APP-HOB',
     name: 'Induction Hob',
     category: 'appliance',
     group: 'appliances',
@@ -414,7 +414,7 @@ export const PRODUCTS: Product[] = [
     tags: ['kitchen', 'appliance'],
   },
   {
-    id: 'TOD-APP-HOD',
+    id: 'WEB-APP-HOD',
     name: 'Wall Extractor Hood',
     category: 'appliance',
     group: 'appliances',
@@ -430,7 +430,7 @@ export const PRODUCTS: Product[] = [
     tags: ['kitchen', 'appliance'],
   },
   {
-    id: 'TOD-APP-DWS',
+    id: 'WEB-APP-DWS',
     name: 'Integrated Dishwasher',
     category: 'appliance',
     group: 'appliances',
@@ -448,7 +448,7 @@ export const PRODUCTS: Product[] = [
 
   /* ----------------------------------------------------------- lighting */
   {
-    id: 'TOD-LGT-PND',
+    id: 'WEB-LGT-PND',
     name: 'Pendant Light',
     category: 'lighting',
     group: 'lighting',
@@ -464,7 +464,7 @@ export const PRODUCTS: Product[] = [
     tags: ['lighting'],
   },
   {
-    id: 'TOD-LGT-CEI',
+    id: 'WEB-LGT-CEI',
     name: 'Recessed Ceiling Light',
     category: 'lighting',
     group: 'lighting',
@@ -480,7 +480,7 @@ export const PRODUCTS: Product[] = [
     tags: ['lighting'],
   },
   {
-    id: 'TOD-LGT-STR',
+    id: 'WEB-LGT-STR',
     name: 'Under-cabinet Strip',
     category: 'lighting',
     group: 'lighting',
@@ -499,7 +499,7 @@ export const PRODUCTS: Product[] = [
 
   /* ---------------------------------------------------- doors & windows */
   {
-    id: 'TOD-OPN-DOR',
+    id: 'WEB-OPN-DOR',
     name: 'Interior Door',
     category: 'opening',
     group: 'openings',
@@ -519,7 +519,7 @@ export const PRODUCTS: Product[] = [
     tags: ['architecture'],
   },
   {
-    id: 'TOD-OPN-WIN',
+    id: 'WEB-OPN-WIN',
     name: 'Window',
     category: 'opening',
     group: 'openings',
@@ -541,7 +541,7 @@ export const PRODUCTS: Product[] = [
 
   /* -------------------------------------------------------- accessories */
   {
-    id: 'TOD-ACC-STL',
+    id: 'WEB-ACC-STL',
     name: 'Bar Stool',
     category: 'accessory',
     group: 'accessories',
@@ -557,7 +557,7 @@ export const PRODUCTS: Product[] = [
     tags: ['furniture'],
   },
   {
-    id: 'TOD-ACC-PLT',
+    id: 'WEB-ACC-PLT',
     name: 'Potted Plant',
     category: 'accessory',
     group: 'accessories',
@@ -573,7 +573,7 @@ export const PRODUCTS: Product[] = [
     tags: ['styling'],
   },
   {
-    id: 'TOD-ACC-RUG',
+    id: 'WEB-ACC-RUG',
     name: 'Runner Rug',
     category: 'accessory',
     group: 'accessories',
@@ -661,5 +661,5 @@ export const ROOM_TYPE_LABEL: Record<RoomType, string> = {
   apartment: 'Full Apartment',
 };
 
-/** Only the kitchen planner is production-ready today. */
+/** Only the kitchen planner is production-ready webliteay. */
 export const AVAILABLE_ROOM_TYPES: RoomType[] = ['kitchen'];

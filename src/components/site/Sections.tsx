@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { BrandLogo } from '../BrandLogo';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MATERIALS } from '@/data/materials';
@@ -45,7 +46,7 @@ export function StudioPromo() {
         <div className="grid gap-16 lg:grid-cols-12 lg:gap-20">
           <div className="lg:col-span-5">
             <Reveal>
-              <p className="label text-brass">TOD Studio</p>
+              <p className="label text-brass">Weblite Design Studio</p>
               <h2 className="mt-5 font-display text-[clamp(2.4rem,5.5vw,4.6rem)] leading-[0.94] font-light">
                 Design your kitchen before you commit to it.
               </h2>
@@ -60,7 +61,7 @@ export function StudioPromo() {
                   href="/studio"
                   className="label group inline-flex items-center gap-2.5 bg-brass px-7 py-3.5 text-obsidian transition-colors duration-300 hover:bg-paper"
                 >
-                  Open TOD Studio
+                  Open Weblite Design Studio
                   <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                 </Link>
                 <Link
@@ -145,7 +146,7 @@ export function MaterialsSection() {
               </h2>
               <p className="mt-6 max-w-sm text-[15px] leading-relaxed text-graphite">
                 We keep a working library of every finish we specify, and we would rather you touched
-                it than scrolled it. These are the same finishes available in TOD Studio.
+                it than scrolled it. These are the same finishes available in Weblite Design Studio.
               </p>
 
               <nav className="mt-10 flex flex-col">
@@ -239,7 +240,7 @@ export function AboutSection() {
             <Reveal>
               <div className="space-y-6 text-[15px] leading-relaxed text-graphite">
                 <p className="text-lg leading-relaxed text-ink">
-                  Tarek Omar Design is an interior architecture practice and joinery workshop working
+                  Weblite Design is an interior architecture practice and joinery workshop working
                   across Cairo and the North Coast.
                 </p>
                 <p>
@@ -300,7 +301,7 @@ export function ContactSection() {
                 Start with your room.
               </h2>
               <p className="mt-7 max-w-md text-[15px] leading-relaxed text-paper/70">
-                The fastest way to begin is to design it yourself. Lay out your space in TOD Studio,
+                The fastest way to begin is to design it yourself. Lay out your space in Weblite Design Studio,
                 then send it to us — we will come back with a considered proposal rather than a
                 generic quotation.
               </p>
@@ -319,7 +320,7 @@ export function ContactSection() {
               <dl className="space-y-8">
                 {[
                   { label: 'Studio', value: ['New Cairo, Egypt', 'Visits by appointment'] },
-                  { label: 'Email', value: ['hello@tarekomar.design'] },
+                  { label: 'Email', value: ['hello@weblite.design'] },
                   { label: 'Telephone', value: ['+20 2 0000 0000'] },
                   { label: 'Hours', value: ['Sunday – Thursday', '09:00 – 18:00'] },
                 ].map((item) => (
@@ -349,12 +350,14 @@ export function Footer() {
   return (
     <footer className="border-t border-paper/10 bg-ink py-12 text-paper">
       <div className="mx-auto flex max-w-[1600px] flex-col gap-6 px-6 lg:flex-row lg:items-center lg:justify-between lg:px-12">
-        <p className="label tracking-[0.28em] text-paper/80">Tarek Omar Design</p>
+        <div className="w-[260px] max-w-full">
+          <BrandLogo inverted />
+        </div>
 
         <nav className="flex flex-wrap gap-x-8 gap-y-2">
           {[
             { href: '/projects', label: 'Projects' },
-            { href: '/studio', label: 'TOD Studio' },
+            { href: '/studio', label: 'Weblite Design Studio' },
             { href: '/#materials', label: 'Materials' },
             { href: '/#about', label: 'About' },
             { href: '/#contact', label: 'Contact' },
@@ -370,7 +373,7 @@ export function Footer() {
         </nav>
 
         <p className="text-[11px] text-paper/40">
-          © {new Date().getFullYear()} Tarek Omar Design
+          © {new Date().getFullYear()} Weblite Design
         </p>
       </div>
     </footer>

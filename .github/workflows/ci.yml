@@ -56,7 +56,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          NEXT_PUBLIC_TOD_DEBUG: '1'
+          NEXT_PUBLIC_WEBLITE_DEBUG: '1'
 
       - name: Start server and wait for it
         run: |
